@@ -1,9 +1,10 @@
+#### Setup do projeto ####
 setwd("D:/Jupyter/Estudos/kaggle/Analise-Video-Game")
 
-#### Setup do projeto ####
 library(readr)
 library(dplyr)
-
+library(ggplot2)
+library(cowplot)
 
 #### Analise Inicial ####
 df <- read_csv("Video_Games.csv")
@@ -30,4 +31,33 @@ df <- filter(df, Year_of_Release <= 2011)
 
 #### Analise Exploratoria ####
 summary(df)
-df$NA_Sales
+
+# como a nintendo vai ser a base do estudo, criarei um df para ela
+df_nintendo <- filter(df, Publisher=="Nintendo")
+
+
+# verificando as vendas da nintendo
+df_nintendo %>% 
+  summarise(
+    vendas_na = sum(NA_Sales),
+    vendas_eu= sum(EU_Sales),
+    vendas_JP = sum(JP_Sales)
+  )
+# identifiquei que a nintendo vende menos na Europa inteira do que no Japao
+glimpse(df_nintendo)
+
+# observando as vendas na europa ao longo do tempo
+a <- ggplot(data=df_nintendo, aes(x=Year_of_Release , y=EU_Sales)) +
+  geom_bar(stat="identity", fill='#009E73') +
+  xlab('Anos') + ylab('Vendas da Nintendo (em milhões)') + ggtitle("Vendas da Nintendo na Europa")
+
+b <-
+  df_nintendo %>%
+  filter(Year_of_Release >= 2002) %>%
+  ggplot(aes(x=Year_of_Release, y=EU_Sales)) +
+    geom_bar(stat='identity', fill='#56B4E9') +
+    xlab('Anos') + ylab('Vendas da Nintendo (em milhões)') + ggtitle("Vendas da Nintendo na Europa no Últimos 10 Anos")
+
+plot_grid(a, b, nrow=1, ncol=2)
+# e notavel o auge da nintendo nos anos de 2005 e 2006 na Europa, porem, depois disso a popularidade da empresa
+# comeca a cair drasticamente.
