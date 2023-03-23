@@ -1,0 +1,18 @@
+Documentação das variávels:
+Column              Name	Description
+Name                The name of the video game.
+Platform            The platform on which the game was released, such as PlayStation, Xbox, Nintendo, etc.
+Year of Release	    The year in which the game was released.
+Genre	            The genre of the video game, such as action, adventure, sports, etc.
+Publisher	        The company responsible for publishing the game.
+NA Sales	        The sales of the game in North America.
+EU Sales	        The sales of the game in Europe.
+JP Sales	        The sales of the game in Japan.
+Other Sales	        The sales of the game in other regions.
+Global Sales	    The total sales of the game across the world.
+Critic Score	    The average score given to the game by professional critics.
+Critic Count	    The number of critics who reviewed the game.
+User Score	        The average score given to the game by users.
+User Count	        The number of users who reviewed the game.
+Developer	        The company responsible for developing the game.
+Rating	            The rating assigned to the game by organizations such as the ESRB or PEGI.
